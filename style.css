@@ -1,0 +1,246 @@
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: #f0f9ff;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+header {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+  animation: slideDown 1s ease forwards;
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #00e0ff;
+  background: linear-gradient(45deg, #00e0ff, #00ffa2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 600;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background: #00ffa2;
+  left: 0;
+  bottom: -4px;
+  transition: 0.4s;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.cta-button {
+  background: linear-gradient(135deg, #00ffa2, #00e0ff);
+  padding: 0.6rem 1.2rem;
+  color: #000;
+  border-radius: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 5px 20px rgba(0, 255, 194, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 255, 194, 0.5);
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4rem 2rem;
+  min-height: 90vh;
+  background: url('assets/bg-water.svg') no-repeat center center / cover;
+  position: relative;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+}
+
+.hero-content {
+  max-width: 600px;
+  position: relative;
+  z-index: 1;
+  animation: fadeInUp 1.2s ease forwards;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  color: #e0f7fa;
+  margin-bottom: 2rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.8rem 1.6rem;
+  margin-right: 1rem;
+  border-radius: 25px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
+
+.btn.primary {
+  background: #00e0ff;
+  color: #000;
+  box-shadow: 0 4px 15px rgba(0, 224, 255, 0.4);
+}
+
+.btn.secondary {
+  background: transparent;
+  border: 2px solid #00ffa2;
+  color: #00ffa2;
+}
+
+.btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 255, 194, 0.6);
+}
+
+.features, .engagement {
+  padding: 4rem 2rem;
+  text-align: center;
+  background: #15202b;
+}
+
+.features h2, .engagement h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #00ffa2;
+}
+
+.feature-grid, .engagement-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.feature-card, .engagement-card {
+  background: #1e2a38;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 224, 255, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover, .engagement-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 30px rgba(0, 224, 255, 0.3);
+}
+
+footer {
+  background: #0f1722;
+  color: #ccc;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.footer .social-links a img {
+  width: 24px;
+  margin: 0 0.5rem;
+  filter: brightness(1.5);
+  transition: transform 0.3s ease;
+}
+
+.footer .social-links a:hover img {
+  transform: scale(1.2);
+}
+
+.quote blockquote {
+  font-style: italic;
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 3rem 2rem;
+  color: #00e0ff;
+  background: #102028;
+  border-left: 5px solid #00ffa2;
+}
+
+.quote cite {
+  display: block;
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: #ccc;
+}

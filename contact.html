@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | Smart Water App</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background-color: #eef9ff;
+    }
+
+    .contact-section {
+      max-width: 800px;
+      margin: 4rem auto;
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    h1 {
+      text-align: center;
+      color: #007acc;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    label {
+      font-weight: bold;
+      margin-bottom: 0.3rem;
+    }
+
+    input,
+    textarea {
+      padding: 0.75rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    button {
+      background-color: #007acc;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #005f99;
+    }
+
+    .contact-info {
+      margin-top: 2rem;
+      font-size: 1rem;
+    }
+
+    .contact-info p {
+      margin: 0.5rem 0;
+    }
+
+    .contact-info a {
+      color: #007acc;
+      text-decoration: none;
+    }
+
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="logo">💧 SmartWater</div>
+  <nav class="nav-links">
+    <a href="index.html" class="nav-btn">Home</a>
+    <a href="dashboard.html" class="nav-btn">Dashboard</a>
+    <a href="tracker.html" class="nav-btn">Tracker</a>
+    <a href="goals.html" class="nav-btn">Goals</a>
+    <a href="alerts.html" class="nav-btn">Alerts</a>
+    <a href="tips.html" class="nav-btn">Tips</a>
+    <a href="profile.html" class="nav-btn">Profile</a>
+    <a href="settings.html" class="nav-btn">Settings</a>
+    <a href="reports.html" class="nav-btn">Reports</a>
+    <a href="learn.html" class="nav-btn">Learn</a>
+    <a href="contact.html" class="nav-btn">Contact</a>
+    <a href="login.html" class="nav-btn">Login</a>
+  </nav>
+</header>
+
+  <!-- Contact Form -->
+  <section class="contact-section">
+    <h1>Contact & Feedback</h1>
+
+    <form onsubmit="event.preventDefault(); alert('Message submitted!');">
+      <div>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required />
+      </div>
+
+      <div>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+
+      <div>
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+      </div>
+
+      <button type="submit">Send Message</button>
+    </form>
+
+    <div class="contact-info">
+      <p>Email: <a href="mailto:support@smartwater.com">support@smartwater.com</a></p>
+      <p>Phone: +91 98765 43210</p>
+      <p>For FAQs and help, visit our <a href="learn.html">Learn Page</a>.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 Smart Water Conservation | <a href="contact.html">Contact Us</a> | <a href="learn.html">Learn More</a></p>
+  </footer>
+</body>
+
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SmartWater | Reports</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(145deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+    }
+
+    header {
+      background-color: #0b121a;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+
+    .logo {
+      color: #00d9ff;
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+    }
+
+    .cta-button {
+      background-color: #00ffc3;
+      color: black;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .container {
+      padding: 2rem;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #00ffc3;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .actions button {
+      padding: 0.7rem 1.2rem;
+      background-color: #00e5ff;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .actions button:hover {
+      background-color: #00bcd4;
+    }
+
+    .report-table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #1e2b38;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .report-table th, .report-table td {
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .report-table th {
+      background-color: #00d9ff;
+      color: black;
+    }
+
+    .report-table tr:nth-child(even) {
+      background-color: #263645;
+    }
+
+    .report-table tr:hover {
+      background-color: #324a60;
+    }
+
+    @media (max-width: 768px) {
+      .report-table, .report-table thead, .report-table tbody, .report-table th, .report-table td, .report-table tr {
+        display: block;
+      }
+
+      .report-table tr {
+        margin-bottom: 1rem;
+      }
+
+      .report-table td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+      }
+
+      .report-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 1rem;
+        text-align: left;
+        font-weight: bold;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">💧SmartWater</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="tracker.html">Tracker</a></li>
+        <li><a href="goals.html">Goals</a></li>
+        <li><a href="alerts.html">Alerts</a></li>
+        <li><a href="tips.html">Tips</a></li>
+        <li><a href="reports.html" class="active">Reports</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="settings.html">Settings</a></li>
+      </ul>
+    </nav>
+    <a href="login.html" class="cta-button">Login</a>
+  </header>
+
+  <!-- Main Container -->
+  <div class="container">
+    <h1>📊 Water Usage Reports</h1>
+
+    <div class="actions">
+      <button onclick="downloadReport('pdf')">📥 Download PDF</button>
+      <button onclick="downloadReport('csv')">📄 Export CSV</button>
+      <button onclick="window.print()">🖨️ Print Report</button>
+      <button onclick="shareReport()">📤 Share</button>
+    </div>
+
+    <table class="report-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Zone</th>
+          <th>Usage (Liters)</th>
+          <th>Monthly Comparison</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Date">2025-06-01</td>
+          <td data-label="Time">08:00 AM</td>
+          <td data-label="Zone">Kitchen</td>
+          <td data-label="Usage">18</td>
+          <td data-label="Comparison">⬆️ 10%</td>
+        </tr>
+        <tr>
+          <td data-label="Date">2025-06-01</td>
+          <td data-label="Time">10:00 AM</td>
+          <td data-label="Zone">Garden</td>
+          <td data-label="Usage">30</td>
+          <td data-label="Comparison">⬇️ 5%</td>
+        </tr>
+        <tr>
+          <td data-label="Date">2025-06-01</td>
+          <td data-label="Time">07:00 PM</td>
+          <td data-label="Zone">Bathroom</td>
+          <td data-label="Usage">22</td>
+          <td data-label="Comparison">⬆️ 2%</td>
+        </tr>
+        <!-- Add more rows as needed -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    function downloadReport(type) {
+      alert("📦 Downloading report as " + type.toUpperCase() + "...");
+      // Trigger backend logic or link to real file if available
+    }
+
+    function shareReport() {
+      alert("🔗 Share link copied to clipboard!");
+      // Copy actual link to clipboard logic can be added here
+    }
+  </script>
+
+</body>
+</html>

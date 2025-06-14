@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SmartWater | Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(145deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+    }
+
+    header {
+      background-color: #0b121a;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      color: #00d9ff;
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+    }
+
+    .cta-button {
+      background-color: #00ffc3;
+      color: black;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4rem 2rem;
+      background: radial-gradient(circle at top left, #12232e, #0f2027);
+    }
+
+    .hero-text {
+      max-width: 600px;
+    }
+
+    .hero-text h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .hero-text p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+      color: #c2d3dc;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 25px;
+      text-decoration: none;
+      box-shadow: 0 0 8px #00d9ff;
+    }
+
+    .btn-start {
+      background: #00d9ff;
+      color: black;
+    }
+
+    .btn-view {
+      border: 2px solid #00ffc3;
+      color: #00ffc3;
+      background: transparent;
+    }
+
+    .hero-image {
+      max-width: 400px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    .summary {
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .summary h2 {
+      color: #00ffc3;
+    }
+
+    .summary p {
+      font-size: 1.1rem;
+      color: #ccc;
+    }
+
+    .quick-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .quick-link {
+      background: #1e2b38;
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+
+    .quick-link:hover {
+      background: #00d9ff;
+      color: black;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">💧SmartWater</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="tracker.html">Tracker</a></li>
+        <li><a href="goals.html">Goals</a></li>
+        <li><a href="alerts.html">Alerts</a></li>
+        <li><a href="tips.html">Tips</a></li>
+        <li><a href="reports.html">Reports</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="settings.html">Settings</a></li>
+      </ul>
+    </nav>
+    <a href="login.html" class="cta-button">Login</a>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Track. Conserve. Transform 🌍</h1>
+      <p>Join the revolution in water management. Monitor your usage, get insights, and take action to conserve water. Save water, save the planet.</p>
+      <div class="buttons">
+        <a href="tracker.html" class="btn btn-start">Start Monitoring</a>
+        <a href="dashboard.html" class="btn btn-view">View Dashboard</a>
+      </div>
+    </div>
+    <img src="assets/animated-water.gif" alt="Water Monitoring Animation" class="hero-image" />
+  </section>
+
+  <!-- Usage Summary -->
+  <section class="summary">
+    <h2>Real-Time Water Usage</h2>
+    <p><strong>Current Flow:</strong> <span id="liveFlow">1.3</span> L/min</p>
+    <p><strong>Today's Usage:</strong> 34.5 L | <strong>Monthly:</strong> 920 L</p>
+
+    <!-- Quick Links -->
+    <div class="quick-links">
+      <a href="dashboard.html" class="quick-link">Go to Dashboard</a>
+      <a href="reports.html" class="quick-link">View Reports</a>
+      <a href="alerts.html" class="quick-link">Check Alerts</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 SmartWater. All rights reserved.
+  </footer>
+
+  <!-- Live flow simulation -->
+  <script>
+    function simulateFlow() {
+      const flow = (Math.random() * (2.2 - 0.7) + 0.7).toFixed(2);
+      document.getElementById('liveFlow').textContent = flow;
+    }
+    setInterval(simulateFlow, 4000);
+  </script>
+
+</body>
+</html>

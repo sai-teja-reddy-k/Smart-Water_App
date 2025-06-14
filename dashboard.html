@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SmartWater | Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(145deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+    }
+
+    header {
+      background-color: #0b121a;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      color: #00d9ff;
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+    }
+
+    .cta-button {
+      background-color: #00ffc3;
+      color: black;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    main {
+      padding: 2rem;
+    }
+
+    h1 {
+      color: #00ffc3;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .card {
+      background-color: #1e2b38;
+      border-radius: 12px;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 0 8px rgba(0,0,0,0.4);
+    }
+
+    .card h2 {
+      margin: 0.5rem 0;
+      color: #00ffc3;
+    }
+
+    .chart-container {
+      background-color: #1e2b38;
+      padding: 1rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    }
+
+    canvas {
+      max-width: 100%;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 2rem;
+      background-color: #1e2b38;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    table th, table td {
+      padding: 1rem;
+      text-align: left;
+    }
+
+    table th {
+      background-color: #00ffc3;
+      color: #000;
+    }
+
+    table tr:nth-child(even) {
+      background-color: #273847;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">💧SmartWater</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="tracker.html">Tracker</a></li>
+        <li><a href="goals.html">Goals</a></li>
+        <li><a href="alerts.html">Alerts</a></li>
+        <li><a href="tips.html">Tips</a></li>
+        <li><a href="reports.html">Reports</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="settings.html">Settings</a></li>
+      </ul>
+    </nav>
+    <a href="login.html" class="cta-button">Login</a>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <h1>Dashboard Overview</h1>
+
+    <!-- Summary Cards -->
+    <div class="card-grid">
+      <div class="card">
+        <h3>Total Used</h3>
+        <h2>320 L</h2>
+      </div>
+      <div class="card">
+        <h3>Avg / Day</h3>
+        <h2>45.7 L</h2>
+      </div>
+      <div class="card">
+        <h3>Goal Progress</h3>
+        <h2>78%</h2>
+      </div>
+      <div class="card">
+        <h3>Real-Time Flow</h3>
+        <h2 id="flowRate">1.2 L/min</h2>
+      </div>
+    </div>
+
+    <!-- Daily Usage Line Chart -->
+    <div class="chart-container">
+      <h2 style="color:#00ffc3;">Daily Water Consumption</h2>
+      <canvas id="dailyChart"></canvas>
+    </div>
+
+    <!-- Monthly Usage Bar Chart -->
+    <div class="chart-container">
+      <h2 style="color:#00ffc3;">Monthly Consumption</h2>
+      <canvas id="monthlyChart"></canvas>
+    </div>
+
+    <!-- Device/Zone Breakdown -->
+    <table>
+      <thead>
+        <tr>
+          <th>Device / Zone</th>
+          <th>Monthly Usage (L)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Kitchen</td><td>110</td></tr>
+        <tr><td>Bathroom</td><td>145</td></tr>
+        <tr><td>Garden</td><td>90</td></tr>
+      </tbody>
+    </table>
+  </main>
+
+  <!-- Charts and Flow Simulation -->
+  <script>
+    const dailyCtx = document.getElementById('dailyChart').getContext('2d');
+    new Chart(dailyCtx, {
+      type: 'line',
+      data: {
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        datasets: [{
+          label: 'Liters',
+          data: [40, 35, 50, 45, 38, 60, 52],
+          backgroundColor: 'rgba(0,255,195,0.2)',
+          borderColor: '#00ffc3',
+          borderWidth: 2,
+          fill: true,
+          tension: 0.4
+        }]
+      },
+      options: {
+        plugins: {
+          legend: { labels: { color: "#fff" } }
+        },
+        scales: {
+          x: { ticks: { color: "#fff" }},
+          y: { ticks: { color: "#fff" }}
+        }
+      }
+    });
+
+    const monthlyCtx = document.getElementById('monthlyChart').getContext('2d');
+    new Chart(monthlyCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [{
+          label: 'Liters',
+          data: [980, 850, 920, 1010, 890, 940],
+          backgroundColor: '#00ffc3',
+          borderRadius: 8
+        }]
+      },
+      options: {
+        plugins: {
+          legend: { labels: { color: "#fff" } }
+        },
+        scales: {
+          x: { ticks: { color: "#fff" }},
+          y: { ticks: { color: "#fff" }}
+        }
+      }
+    });
+
+    // Real-time flow simulation
+    function updateFlowRate() {
+      const flow = (Math.random() * (2.5 - 0.8) + 0.8).toFixed(2);
+      document.getElementById('flowRate').textContent = `${flow} L/min`;
+    }
+    setInterval(updateFlowRate, 3000);
+  </script>
+
+</body>
+</html>

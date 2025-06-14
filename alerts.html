@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SmartWater Alerts</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      background: linear-gradient(145deg, #0f2027, #203a43, #2c5364);
+      color: #ffffff;
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+    }
+
+    .container {
+      padding: 2rem;
+    }
+
+    .alerts-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .filter-options {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .filter-options button {
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      background-color: #00d9ff;
+      color: #000;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .filter-options button:hover {
+      background-color: #00bcd4;
+    }
+
+    .alert-card {
+      background-color: #1e2b38;
+      border-left: 8px solid;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .alert-card.red { border-color: #ff4c4c; }
+    .alert-card.orange { border-color: #ff9800; }
+    .alert-card.green { border-color: #00e676; }
+
+    .alert-info {
+      flex: 1;
+    }
+
+    .alert-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .alert-actions button {
+      padding: 0.4rem 0.8rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .acknowledge { background-color: #00e676; color: #000; }
+    .dismiss { background-color: #ff4c4c; color: #fff; }
+
+    .details-btn {
+      background-color: #00bcd4;
+      color: #000;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background-color: #1e2b38;
+      padding: 2rem;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 600px;
+      color: #fff;
+    }
+
+    .modal-content h3 {
+      margin-top: 0;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.5rem;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="logo">💧SmartWater</div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="tracker.html">Tracker</a></li>
+        <li><a href="goals.html">Goals</a></li>
+        <li><a href="alerts.html" class="active">Alerts</a></li>
+        <li><a href="tips.html">Tips</a></li>
+        <li><a href="reports.html">Reports</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="settings.html">Settings</a></li>
+      </ul>
+    </nav>
+    <a href="login.html" class="cta-button">Login</a>
+  </header>
+
+  <div class="container">
+    <div class="alerts-header">
+      <h1>📢 Real-Time Water Usage Alerts</h1>
+      <p>Monitor unusual activities and get notified instantly.</p>
+    </div>
+
+    <div class="filter-options">
+      <button onclick="filterAlerts('today')">Today</button>
+      <button onclick="filterAlerts('week')">This Week</button>
+      <button onclick="filterAlerts('custom')">Custom</button>
+    </div>
+
+    <div id="alerts-list">
+      <div class="alert-card red">
+        <div class="alert-info">
+          <h3>⚠️ High Usage Alert</h3>
+          <p>You consumed 150L more than usual today.</p>
+          <small>10 June 2025, 9:45 AM</small>
+        </div>
+        <div class="alert-actions">
+          <button class="details-btn" onclick="openModal('High Usage detected in bathroom. Possible leak.')">Details</button>
+          <button class="acknowledge">Acknowledge</button>
+          <button class="dismiss">Dismiss</button>
+        </div>
+      </div>
+
+      <div class="alert-card orange">
+        <div class="alert-info">
+          <h3>🚿 Leak Suspected</h3>
+          <p>Continuous flow detected for 3 hours.</p>
+          <small>09 June 2025, 3:12 PM</small>
+        </div>
+        <div class="alert-actions">
+          <button class="details-btn" onclick="openModal('Leakage possibly in kitchen faucet. Check immediately.')">Details</button>
+          <button class="acknowledge">Acknowledge</button>
+          <button class="dismiss">Dismiss</button>
+        </div>
+      </div>
+
+      <div class="alert-card green">
+        <div class="alert-info">
+          <h3>💧 Usage Goal Reached</h3>
+          <p>You've stayed below 100L/day for a full week.</p>
+          <small>08 June 2025, 6:30 PM</small>
+        </div>
+        <div class="alert-actions">
+          <button class="details-btn" onclick="openModal('Excellent! You’ve saved over 250L this week.')">Details</button>
+          <button class="acknowledge">Celebrate</button>
+          <button class="dismiss">Dismiss</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="alertModal" class="modal" onclick="closeModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal()">✖</button>
+      <h3>Alert Details</h3>
+      <p id="modal-text">Loading...</p>
+    </div>
+  </div>
+
+  <script>
+    function openModal(message) {
+      document.getElementById("modal-text").textContent = message;
+      document.getElementById("alertModal").style.display = "flex";
+    }
+
+    function closeModal() {
+      document.getElementById("alertModal").style.display = "none";
+    }
+
+    function filterAlerts(type) {
+      alert("Filtering: " + type + " (You can implement logic to filter by time)");
+      // Optionally filter alerts here in JS
+    }
+  </script>
+</body>
+</html>

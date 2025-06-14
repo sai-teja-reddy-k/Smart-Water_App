@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SmartWater | Login</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(145deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      background-color: #0b121a;
+      width: 100%;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      color: #00d9ff;
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+    }
+
+    .cta-button {
+      background-color: #00ffc3;
+      color: black;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .login-container {
+      background-color: #1e2b38;
+      margin-top: 3rem;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+      max-width: 400px;
+      width: 90%;
+    }
+
+    .login-container h1 {
+      text-align: center;
+      color: #00ffc3;
+      margin-bottom: 2rem;
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: 600;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 0.6rem;
+      margin-top: 0.3rem;
+      border: none;
+      border-radius: 8px;
+      background-color: #324a60;
+      color: #fff;
+    }
+
+    .remember-forgot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .remember-forgot input {
+      accent-color: #00ffc3;
+    }
+
+    .remember-forgot a {
+      color: #00d9ff;
+      text-decoration: none;
+    }
+
+    .login-btn {
+      margin-top: 1.5rem;
+      width: 100%;
+      padding: 0.7rem;
+      background-color: #00ffc3;
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .login-btn:hover {
+      background-color: #00e5b5;
+    }
+
+    .register-link {
+      text-align: center;
+      margin-top: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .register-link a {
+      color: #00d9ff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .login-illustration {
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    .login-illustration img {
+      width: 250px;
+      max-width: 80%;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">💧SmartWater</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="tracker.html">Tracker</a></li>
+        <li><a href="goals.html">Goals</a></li>
+        <li><a href="alerts.html">Alerts</a></li>
+        <li><a href="tips.html">Tips</a></li>
+        <li><a href="reports.html">Reports</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="settings.html">Settings</a></li>
+      </ul>
+    </nav>
+    <a href="login.html" class="cta-button">Login</a>
+  </header>
+
+  <!-- Login Form -->
+  <div class="login-container">
+    <h1>Welcome Back 👋</h1>
+    <form onsubmit="return validateLogin()">
+      <label for="email">Email</label>
+      <input type="email" id="email" required placeholder="you@example.com" />
+
+      <label for="password">Password</label>
+      <input type="password" id="password" required placeholder="Enter your password" />
+
+      <div class="remember-forgot">
+        <label><input type="checkbox" id="remember" /> Remember me</label>
+        <a href="#">Forgot password?</a>
+      </div>
+
+      <button class="login-btn" type="submit">Login</button>
+
+      <div class="register-link">
+        Don't have an account? <a href="signup.html">Register here</a>
+      </div>
+    </form>
+  </div>
+
+  <!-- Illustration -->
+  <div class="login-illustration">
+    <img src="secure-login-animation.png" alt="Secure Login Illustration" />
+  </div>
+
+  <script>
+    function validateLogin() {
+      const email = document.getElementById('email').value;
+      const pass = document.getElementById('password').value;
+      if (!email || !pass) {
+        alert("Please fill in all fields.");
+        return false;
+      }
+      alert("✅ Logged in successfully!");
+      return true;
+    }
+  </script>
+
+</body>
+</html>
